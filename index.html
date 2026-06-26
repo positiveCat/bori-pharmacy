@@ -131,6 +131,13 @@
 
     /* ── 운영정보 ── */
     #info { background: var(--white); }
+    .pharmacy-photo {
+      width: 100%; max-height: 300px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      margin-bottom: 40px;
+      box-shadow: var(--shadow);
+    }
     .info-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -344,6 +351,11 @@
 <!-- ── 운영정보 ── -->
 <section id="info">
   <div class="container">
+    <img
+      src="pharmacy.jpeg"
+      alt="보리약국 외관"
+      class="pharmacy-photo fade-up"
+    />
     <h2 class="section-title fade-up">운영 정보</h2>
     <p class="section-sub fade-up">편하게 방문하거나 전화 주세요 🐾</p>
     <div class="info-grid">
