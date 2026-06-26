@@ -130,11 +130,12 @@
       position: relative; z-index: 1;
     }
     .hero-badge {
-      display: inline-flex; align-items: center; gap: 6px;
+      display: inline-flex; align-items: flex-start; gap: 8px;
       margin-top: 28px;
       background: var(--white);
-      padding: 10px 22px; border-radius: 50px;
-      font-size: 0.9rem; font-weight: 600; color: var(--mint-deep);
+      padding: 12px 24px; border-radius: 20px;
+      font-size: 0.88rem; font-weight: 600; color: var(--mint-deep);
+      line-height: 1.7; text-align: left;
       box-shadow: 0 2px 12px rgba(78,205,196,0.25);
       position: relative; z-index: 1;
     }
@@ -367,11 +368,15 @@
   <h1 class="hero-title">보리약국</h1>
   <p class="hero-sub">순천 중앙동의 따뜻한 동네 약국</p>
   <div class="hero-badge">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" style="flex-shrink:0; margin-top:2px;">
       <circle cx="12" cy="12" r="10" stroke="#36B8B0" stroke-width="2"/>
       <path d="M12 6v6l4 2" stroke="#36B8B0" stroke-width="2" stroke-linecap="round"/>
     </svg>
-    평일 08:30 ~ 18:30
+    <div>
+      평일 08:30 ~ 18:30<br/>
+      토요일 08:30 ~ 13:30<br/>
+      일요일 휴무
+    </div>
   </div>
 </section>
 
