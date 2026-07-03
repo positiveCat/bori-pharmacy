@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "deny": [
+      "WebFetch",
+      "WebFetch(*)",
+      "Bash(rm -rf /)*",
+      "Bash(rm -rf ~)*",
+      "Bash(rm -rf .)*",
+      "Bash(rm -r .)*",
+      "Bash(rm -r ./)*",
+      "Bash(rm -rf *)*",
+      "Bash(sudo:*)",
+      "Bash(chmod 777:*)",
+      "Bash(>/dev/*)",
+      "Bash(curl*|*sh)*",
+      "Bash(wget*|*sh)*",
+      "Bash(*>~/.ssh/*)",
+      "Bash(*>~/.zshrc)*",
+      "Bash(*>~/.bashrc)*",
+      "Bash(*>~/.profile)*",
+      "Bash(*>~/.zprofile)*",
+      "Bash(git push --force*main)*",
+      "Bash(git push -f*main)*",
+      "Bash(git push --force*master)*",
+      "Bash(git push -f*master)*",
+      "Bash(git push --force-with-lease*main)*",
+      "Bash(git push --force-with-lease*master)*",
+      "Bash(git push origin +main)*",
+      "Bash(git push origin +master)*",
+      "Bash(git reset --hard origin/*)*",
+      "Bash(git clean -f*)*",
+      "Bash(git checkout -- .)*",
+      "Bash(git restore .)*",
+      "Bash(npm publish)*",
+      "Bash(pnpm publish)*",
+      "Bash(yarn publish)*",
+      "Bash(docker system prune)*",
+      "Bash(mkfs*)*",
+      "Bash(dd if=*)*",
+      "Bash(eval *)*",
+      "Bash(bash -c *)*",
+      "Bash(/bin/bash -c *)*",
+      "Bash(sh -c *)*",
+      "Bash(/bin/sh -c *)*",
+      "Bash(osascript*)*",
+      "Bash(/usr/bin/osascript*)*",
+      "Bash(crontab*)*",
+      "Bash(launchctl*)*",
+      "Bash(xargs *)*",
+      "Bash(open http*)*",
+      "Bash(source /dev/*)*"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/remote-command-guard.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/output-secret-filter.sh",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/code-quality-reminder.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/security-auto-trigger.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
